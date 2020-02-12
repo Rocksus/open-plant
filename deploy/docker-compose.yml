@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=open_plant
+      - POSTGRES_PASSWORD=plantrulez
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+  
