@@ -23,6 +23,7 @@ func PlantHandler(w http.ResponseWriter, r *http.Request) {
 	decoder.Decode(&p)
 
 	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "Message Received")
 	fmt.Println(p)
 }
 
