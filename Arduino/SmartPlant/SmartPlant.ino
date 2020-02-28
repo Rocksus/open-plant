@@ -61,17 +61,19 @@ void loop()
   
    StaticJsonDocument<200> doc;
   
-  doc["plant_id"]=1;
-  doc["temp"]=DHT.temperature;
+  doc["id"]=1;
+  doc["temperature"]=DHT.temperature;
   doc["humidity"]=DHT.humidity;
   doc["moisture"]=soilMoistureValue;
 
-    http.begin(IP_ADDR);
-    http.addHeader("Content-Type", "application/json");
+  http.begin(IP_ADDR);
+  http.addHeader("Content-Type", "application/json");
+  
   String postData = "";
   serializeJson(doc, postData);
   int httpCode = http.POST(postData);
   String response = http.getString();
+  http.end();
   #ifdef DEBUG
     Serial.print("HTTP Code: ");
     Serial.println(httpCode);
